@@ -55,7 +55,7 @@ public class SaplingSlayer {
         BlockPos pos = event.getPos();
         Block block = player.level.getBlockState(event.getPos()).getBlock();
         if (!item.getEnchantmentTags().toString().contains("sapling_slayer") || !(item.getItem() instanceof ShearsItem) || !(block instanceof LeavesBlock) || event.isCanceled()) return;
-        if (item.isDamageableItem() && !player.level.isClientSide) item.setDamageValue((int) (item.getDamageValue() + item.getMaxDamage() * 0.1));
+        if (item.isDamageableItem() && !player.level.isClientSide) item.setDamageValue((int) (damagePercent.get() * item.getMaxDamage() + item.getDamageValue()));
         dropSapling(player.level, pos, (LeavesBlock) block);
         player.level.setBlock(pos, AIR, 1);
     }
@@ -75,16 +75,18 @@ public class SaplingSlayer {
     public static ForgeConfigSpec configSpec;
     public static ForgeConfigSpec.BooleanValue isTradeable, isCurse, isTreasureOnly, isDiscoverable, isAllowedOnBooks;
     public static ForgeConfigSpec.ConfigValue<String> rarity;
+    public static ForgeConfigSpec.ConfigValue<Double> damagePercent;
 
     static {
         ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
-        builder.push("Sapling Slayer Enchantment Attribute");
+        builder.push("Sapling Slayer");
         isTradeable = builder.define("isTradeable", true);
         isCurse = builder.define("isCurse", false);
         isTreasureOnly = builder.define("isTreasure", false);
         isDiscoverable = builder.define("canBeFoundInLoot", true);
         isAllowedOnBooks = builder.define("isAllowedOnBooks", true);
         rarity = builder.comment("Allowed value: COMMON, UNCOMMON, RARE, VERY_RARE").define("rarity", "COMMON");
+        damagePercent = builder.comment("How many durability of the shears will be taken after harvesting sapling").define("harvestDamagePercent", 0.01);
         builder.pop();
         configSpec = builder.build();
     }
