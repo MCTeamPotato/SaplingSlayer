@@ -1,4 +1,4 @@
 {
   "enchantment.saplingslayer.sapling_slayer": "Sapling Slayer",
-  "enchantment.saplingslayer.sapling_slayer.desc": "When thou shears doth damage leaves, they shall surely drop their corresponding saplings."
+  "enchantment.saplingslayer.sapling_slayer.desc": "When right-clicking on leaves with shears, the corresponding sapling will always drop."
 }
