@@ -12,10 +12,10 @@ import static com.teampotato.saplingslayer.SaplingSlayer.*;
 public class SaplingSlayerEnchantment extends Enchantment {
 
     private static final EquipmentSlotType[] MAIN_HAND = new EquipmentSlotType[]{EquipmentSlotType.MAINHAND};
-    private static final EnchantmentType ENCHANTMENT_TYPE = EnchantmentType.create(SaplingSlayer.ID + ":on_shear", null);
+    private static final EnchantmentType ENCHANTMENT_TYPE = EnchantmentType.create(ID + ":on_shear", null);
 
     private static Rarity getRarityInConfig() {
-        switch (SaplingSlayer.rarity.get()) {
+        switch (rarity.get()) {
             case "COMMON":
                 return Rarity.COMMON;
             case "UNCOMMON":
